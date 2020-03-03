@@ -1,0 +1,24 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 10 } %>
+
+development:
+  <<: *default
+  database: legitnews-dev
+  host: db
+  username: postgres
+  password:
+
+test:
+  <<: *default
+  host: <%= ENV['POSTGRES_HOST'] ||= 'db' %>
+  username: <%= ENV['POSTGRES_USER'] ||= 'postgres' %>
+  password: <%= ENV['POSTGRES_PASSWORD'] ||= '' %>
+  database: legitnews-dev
+
+production:
+  <<: *default
+  database: legitnew
+  username: legitnews
+  password: <%= ENV['MYAgiPP_DATABASE_PASSWORD'] %>
